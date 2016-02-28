@@ -1,3 +1,7 @@
 PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
-end
+
+  resources :posts, except: [:destroy]
+  resources :categories, only: [:new, :create, :show]
+
+  end

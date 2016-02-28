@@ -1,7 +1,9 @@
-<%=render 'shared/content_title', title: "All posts" %>
 
-<% @posts.each do |post| %>
-  <div class="row">
+
+<%= render 'shared/content_title', title: "showing Category: #{@category.name}"  %>
+
+<% @category.posts.each do |post| %>
+	<div class="row">
     <div class="span8 well">
       <% post.categories.each do |category| %>
         <span class="badge"><%= category.name %></span>
@@ -20,4 +22,4 @@
         <small>
     </div>
   </div>
-<% end %>
+	<% end %>
