@@ -1,25 +1,8 @@
 
+<% all_posts = link_to('All Posts', posts_path) %>
 
-<%= render 'shared/content_title', title: "showing Category: #{@category.name}"  %>
+<%= render 'shared/content_title',  title: "#{all_posts}  &raquo; #{@category.name}".html_safe %>
 
 <% @category.posts.each do |post| %>
-	<div class="row">
-    <div class="span8 well">
-      <% post.categories.each do |category| %>
-        <span class="badge"><%= category.name %></span>
-      <% end %>
-      <h4><%= link_to post.title, post_path(post) %></h4>
-      <p><%= post.description %></p>
-      <p>
-        <span class="quiet">Posted by:</span><%= post.user.username %>
-        <small> at <%=post.created_at %></small>
-        <small> at <%=post.id %></small>
-      </p>
-        <small>
-          <span>
-            <%= link_to "#{post.comments.size} comments", post_path(post) %>
-          </span>
-        <small>
-    </div>
-  </div>
+	<%= render 'posts/post', post: post %>
 	<% end %>

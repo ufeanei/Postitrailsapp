@@ -4,11 +4,16 @@ class PostsController < ApplicationController
                                                            #Without the only section,index and new will have trouble
 
   def index
+
     @posts = Post.all
+
   end
 
   def show
+
     #@post = Post.find(params[:id]) taken to before action
+    @comment = Comment.new
+
   end
 
   def new
@@ -44,7 +49,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def set_post

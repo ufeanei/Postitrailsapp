@@ -5,7 +5,7 @@
 
 <p>
   <% @post.categories.each do |category| %>
-    <span class="badge"><%= category.name %></span>
+    <span class="badge"><%= link_to category.name,  category_path(category) %></span>
   <% end %>
 </P>
 
@@ -16,4 +16,29 @@
   <%= @post.description %>
 </p>
 <hr>
+
+<%= form_for [@post, @comment] do |f| %>
+	<%= render 'shared/errors', obj: @comment %>
+	<div class='control-group'>
+	  <%= f.label :body, 'Leave a comment' %>
+	  <%= f.text_area :body , rows: 3, class: 'span4'%>
+	</div>
+	<%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% end %>
+
+<h4>Here are the comments</h4>
+<% @post.comments.each do |comment| %>
+
+
+<div class='well '>
+	<p>"<%= comment.body %>"</p>
+	<p>by <%= link_to comment.user.username, '' %>  at <%= display_time(comment.created_at)%></p>
+</div>
+<% end %>
+
+
+
+
+
+
 
